@@ -1,7 +1,19 @@
+# Typing
 from typing import List
 
+# Logging
+import logging
+
+logger = logging.getLogger(__name__)
+file_handler = logging.FileHandler(
+    "2048.log",
+    mode="w"
+)
+
+# LangChain
 from langchain.tools import tool, BaseTool
 
+# Selenium
 from selenium.webdriver.chrome.webdriver import WebDriver
 from selenium.webdriver import ActionChains
 from selenium.webdriver.common.keys import Keys 
@@ -12,7 +24,10 @@ def generate_tools_for_webdriver(driver: WebDriver) -> List[BaseTool]:
     @tool
     def fullscreen_window() -> None:
         """Tests the drivers functionality"""
+        logger.info("Setting window to fullscreen...")
         driver.fullscreen_window()
+        logger.info("Window set to fullscreen")
+        return "Window has been set to fullscreen"
 
     @tool
     def press_direction(direction: str) -> str:

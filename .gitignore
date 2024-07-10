@@ -3,3 +3,6 @@ __pycache__/
 
 # Ignore logging files
 *.log
+
+# Ignoring screenshots
+*.png

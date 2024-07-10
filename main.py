@@ -1,3 +1,6 @@
+# JSON formatting
+import json
+
 # Logging
 import logging
 
@@ -14,10 +17,12 @@ file_handler = logging.FileHandler(
     mode="w"
 )
 
+# selenium_logger = logging.getLogger("selenium")
+# selenium_logger.setLevel(logging.DEBUG)
+
 # Selenium
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
-from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
@@ -71,6 +76,9 @@ except:
 llm_interface = LLMInterface(driver)
 
 # print(llm_interface.ask_llm_with_tools("Press the up arrow key"))
-print(llm_interface.ask_llm_with_tools("What's 5 times forty-two"))
+# print(llm_interface.ask_agent("What's 5 times forty-two"))
 # print(llm_interface.ask_llm_with_tools("Fullscreen the window."))
 # print(llm_interface.ask_llm_with_tools("Say hello"))
+# llm_interface.ask_agent("what's 5 * forty-two")
+
+llm_interface.solve()

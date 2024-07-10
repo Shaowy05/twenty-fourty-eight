@@ -30,7 +30,7 @@ from langchain_openai import AzureChatOpenAI
 
 from langchain_core.messages.base import BaseMessage
 from langchain_core.tools import tool 
-from langchain_core.messages import HumanMessage, SystemMessage 
+from langchain_core.messages import HumanMessage, ToolMessage 
 
 # LangGraph
 from langgraph.prebuilt import create_react_agent
@@ -177,7 +177,18 @@ class LLMInterface:
                 ])
             ]
 
-            print(self.llm_with_tools.invoke(messages))
+            msg = self.llm_with_tools.invoke(messages)
+
+            messages.append(msg)
+
+            for tool_call in msg.tool_calls:
+                selected_tool = self.tool_dict[tool_call["name"].lower()]
+                tool_output = selected_tool.invoke(tool_call["args"])
+                messages.append(ToolMessage(
+                    tool_output,
+                    tool_call_id=tool_call["id"]
+                ))
+
             iteration += 1
 
         return

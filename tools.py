@@ -32,9 +32,10 @@ def generate_tools_for_webdriver(driver: WebDriver) -> List[BaseTool]:
     @tool
     def press_direction(direction: str) -> str:
         """Presses the key given by the direction."""
+        logger.info(f"Pressing the {direction} key...")
         action_chain = ActionChains(driver)
 
-        match direction:
+        match direction.lower():
             case "up":
                 action_chain.send_keys(Keys.UP)
             case "down":

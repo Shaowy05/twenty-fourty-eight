@@ -17,8 +17,8 @@ file_handler = logging.FileHandler(
     mode="w"
 )
 
-selenium_logger = logging.getLogger("selenium")
-selenium_logger.setLevel(logging.DEBUG)
+# selenium_logger = logging.getLogger("selenium")
+# selenium_logger.setLevel(logging.DEBUG)
 
 # Selenium
 from selenium import webdriver

@@ -6,3 +6,6 @@ __pycache__/
 
 # Ignoring screenshots
 *.png
+
+# Ignore .env files
+.env

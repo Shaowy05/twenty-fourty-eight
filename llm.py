@@ -48,6 +48,8 @@ class LLMInterface:
         )
 
         self.llm = llm
+        logger.info("LLM instantiated")
+
         self.driver = driver
 
         # Adding the tools to the LLM's toolkit
@@ -55,10 +57,13 @@ class LLMInterface:
         self.tools = generate_tools_for_webdriver(self.driver)
         logger.info("Tools successfully generated")
 
+        # Creating a tools dictionary, used to allow the LLM to
+        # select the tools using the name of the method.
         logger.info("Generating tools dictionary...")
         self.tool_dict = self.generate_tool_dict()
         logger.info("Tools dictionary successfully generated")
 
+        # Binding the tools to the LLM
         logger.info("Binding tools...")
         self.llm_with_tools = self.llm.bind_tools(self.tools)
         logger.info("Tools bound to LLM")
